@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One&display=swap" rel="stylesheet">
+  </head>
+  <body class="loader">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark techfont custom-navbar">
+      <a class="navbar-brand bigbrand ml-4" href="{% url 'post_list' %}"> CP Blog </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ml-4" id="navbarNavAltMarkup">
+        <div class="navbar-nav justify-content-end">
+
+
+          <!-- <ul class="list-group"> -->
+              <!-- <li class="nav-item mr-4 align-right"> -->
+                <form class="form-inline ml-2 mr-2" action="{% url 'search' %}">
+                  <div class="input-group">
+                    <input type="text" name="category" class="form-control" placeholder="Search Topics" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                    <div class="input-group-append">
+                      <button class="btn btn-success" type="submit" id="button-addon2">
+                        <i class="fas fa-search">Go</i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              <!-- </li> -->
+          <!-- </ul> -->
+
+
+          <a
+          {% if '/' in request.path %}
+            class="nav-item nav-link active ml-1 mr-1"
+          {% else %}
+            class="nav-item nav-link ml-1 mr-1"
+          {% endif %}
+          href="{% url 'post_list' %}"> Home </a>
+          <a
+          {% if 'topics' in request.path %}
+            class="nav-item nav-link active ml-1 mr-1"
+          {% else %}
+            class="nav-item nav-link ml-1 mr-1"
+          {% endif %}
+          href="{% url 'topics' %}"> Topics </a>
+          <a
+          {% if 'about' in request.path %}
+            class="nav-item nav-link active ml-1 mr-1"
+          {% else %}
+            class="nav-item nav-link ml-1 mr-1"
+          {% endif %}
+          href="{% url 'about' %}"> About </a>
+          <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+          {% if user.is_authenticated %}
+          <a
+          {% if 'post_new' in request.path %}
+            class="nav-item nav-link active ml-1 mr-1"
+          {% else %}
+            class="nav-item nav-link ml-1 mr-1"
+          {% endif %}
+          href="{% url 'post_new' %}"> New Post </a>
+          <a
+          {% if 'drafts' in request.path %}
+            class="nav-item nav-link active ml-1 mr-1"
+          {% else %}
+            class="nav-item nav-link ml-1 mr-1"
+          {% endif %}
+          href="{% url 'drafts' %}"> Drafts </a>
+          <a class="nav-item nav-link ml-1 mr-1 active" href="#" title="Welcome {{user.username}}"> {{user.username}} </a>
+          <a class="nav-item nav-link ml-1 mr-1" href="{% url 'logout' %}"> Log Out </a>
+          {% else %}
+          <a class="nav-item nav-link ml-1 mr-1" href="{% url 'login' %}"> Log In </a>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block body_block %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

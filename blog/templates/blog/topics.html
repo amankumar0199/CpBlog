@@ -1,0 +1,86 @@
+{% extends 'blog/base.html' %}
+{% block body_block %}
+  <div class="centerstage border rounded">
+    <ul class="list-group">
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="math">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Math
+          <span class="badge badge-primary badge-pill">14</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="arrays">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Arrays
+          <span class="badge badge-primary badge-pill">4</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="linked list">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Linked List
+          <span class="badge badge-primary badge-pill">1</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="trees">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Trees
+          <span class="badge badge-primary badge-pill">5</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="graphs">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Graphs
+          <span class="badge badge-primary badge-pill">3</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="recursion">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Recursion
+          <span class="badge badge-primary badge-pill">6</span>
+        </li>
+        </button>
+      </form>
+
+
+      <form class="" action="{% url 'search' %}">
+        <input type="hidden" name="category" value="ds">
+        <button class="btn btn-block" type="submit" id="button-addon2">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Data Structures
+          <span class="badge badge-primary badge-pill">2</span>
+        </li>
+        </button>
+      </form>
+
+    </ul>
+  </div>
+  <p></p>
+  <p>More topics coming soon... <br>Drop us a mail at : <b>abc@gmail.com</b></p>
+{% endblock %}

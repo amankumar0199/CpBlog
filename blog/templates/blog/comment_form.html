@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block body_block %}
+{% load crispy_forms_tags %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+  <h1>New Comment</h1>
+  <form class="post-form" method="POST">
+    {% csrf_token %}
+    <div class="col-12">
+      {{ form.author|as_crispy_field }}
+    </div>
+    <p class="ml-3">Type your comment below*</p>
+    <div class="col-12 mt-4 border rounded p-0 ml-2 mr-2">
+      {{ form.text }}
+    </div>
+    <input type="submit" class="save btn btn-default btn-primary mt-4 ml-2" value="Post Comment">
+  </form>
+  <script>
+    var editor = new MediumEditor('.editable');
+  </script>
+{% endblock %}
